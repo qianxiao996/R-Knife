@@ -28,13 +28,16 @@ import frozen_dir
 from module.func_binary import Class_Binary
 from module.func_decode import Class_Decode
 from module.func_encode import Class_Encode
+from module.sfzh import SFZH
+from module.phone import Phone
+
 
 
 SETUP_DIR = frozen_dir.app_path()
 sys.path.append(SETUP_DIR)
-version = '1.0'
+version = '1.1'
 config_file_dir = './Conf/config.ini'
-update_time = '20230222'
+update_time = '20230226'
 DB_NAME = './Conf/DB.db'
 requests.packages.urllib3.disable_warnings()
 
@@ -50,7 +53,7 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
         self.load_button()
         self.generate_shell()
         self.generate_file_shell()
-        self.Ui.tab_add.clicked.connect(self.add_Tab)  # 添加tab
+        # self.Ui.tab_add.clicked.connect(self.add_Tab)  # 添加tab
         desktop = QApplication.desktop()
         # print(desktop.width(),desktop.height())
         self.x=desktop.width()-200
@@ -62,10 +65,10 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
         self.Ui.tabWidget_4.currentChanged.connect(self.onCurrentChanged)
         self.Ui.tabWidget_4.tabBar().installEventFilter(self)
         self.Ui.tabWidget_4.tabBar().previousMiddleIndex = -1
-        self.Ui.Source_Paste_Button.clicked.connect(lambda: self.paste('Source'))  # paste_Source
-        self.Ui.Source_clear_Button.clicked.connect(lambda: self.Ui.Source_text.clear())  # clear_source
-        self.Ui.Result_Copy_Button.clicked.connect(lambda: self.Copy_text( self.Ui.Result_text.toPlainText()))  # copy_result
-        self.Ui.zhuanyuan.clicked.connect(self.zhuan_yuanwenben)  # paste_result
+        # self.Ui.Source_Paste_Button.clicked.connect(lambda: self.paste('Source'))  # paste_Source
+        # self.Ui.Source_clear_Button.clicked.connect(lambda: self.Ui.Source_text.clear())  # clear_source
+        # self.Ui.Result_Copy_Button.clicked.connect(lambda: self.Copy_text( self.Ui.Result_text.toPlainText()))  # copy_result
+        # self.Ui.zhuanyuan.clicked.connect(self.zhuan_yuanwenben)  # paste_result
 
         self.Ui.comboBox_encode.activated[str].connect(lambda:self.gogogo(self.Ui.comboBox_encode.currentText()))
         self.Ui.comboBox_decode.activated[str].connect(lambda:self.gogogo(self.Ui.comboBox_decode.currentText(),"Decode"))
@@ -74,6 +77,7 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
         #默认设备密码
         self.load_morepasswd()
         # self.Ui.tableWidget_morenpasswd_result.setVisible(False)
+        self.Ui.tableWidget_morenpasswd_result.horizontalHeader().setVisible(True)
         self.Ui.tableWidget_morenpasswd_result.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         # self.Ui.tableWidget_morenpasswd_result.resizeColumnToContents(0)
         # self.Ui.tableWidget_morenpasswd_result.resizeColumnToContents(1)
@@ -104,6 +108,18 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
         self.Ui.pushButton_copy.clicked.connect(lambda: self.Copy_text(self.Ui.textEdit_java_result.toPlainText()))  # copy_source
         self.Ui.pushButton_encode.clicked.connect(self.java_encode)
 
+        #账号生成
+        self.load_sfzh_data()
+        self.load_phone_data()
+
+        self.Ui.comboBox_sfzh_year.activated[str].connect(self.load_sfzh_year)
+        self.Ui.comboBox_sfzh_year_2.activated[str].connect(self.load_sfzh_year_2)
+        self.Ui.comboBox_sfzh_month.activated[str].connect(self.load_sfzh_month)
+        self.Ui.comboBox_sfzh_day.activated[str].connect(self.load_sfzh_day)
+        self.Ui.pushButton_sfzh_go.clicked.connect(self.sfzh_go)
+        self.Ui.pushButton_phone_go.clicked.connect(self.phone_go)
+        self.Ui.pushButton_phone_number.clicked.connect(self.pushButton_phone_chaxun)
+
 
         #小工具
         self.Ui.tools_ip.clicked.connect(lambda :self.tools("ipsearch"))
@@ -117,7 +133,140 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
         self.Ui.tools_get_ip.clicked.connect(lambda :self.tools("get_ip"))
         self.Ui.tools_get_china_ip.clicked.connect(lambda :self.tools("get_china_ip"))
         self.Ui.tools_remove_china_ip.clicked.connect(lambda :self.tools("remove_china_ip"))
+    def load_sfzh_year(self):
+        text = self.Ui.lineEdit_sfzh.text()
+        year = self.Ui.comboBox_sfzh_year.currentText()
+        text = text[:6]+year+ text[8:]
+        self.Ui.lineEdit_sfzh.setText(text)
+    def load_sfzh_year_2(self):
+        text = self.Ui.lineEdit_sfzh.text()
+        year = self.Ui.comboBox_sfzh_year_2.currentText()
+        text = text[:8]+year+ text[10:]
+        self.Ui.lineEdit_sfzh.setText(text)
+    def load_sfzh_month(self):
+        text = self.Ui.lineEdit_sfzh.text()
+        year = self.Ui.comboBox_sfzh_month.currentText()
+        text = text[:10]+year+ text[12:]
+        self.Ui.lineEdit_sfzh.setText(text)
+    def load_sfzh_day(self):
+        text = self.Ui.lineEdit_sfzh.text()
+        year = self.Ui.comboBox_sfzh_day.currentText()
+        text = text[:12]+year+ text[14:]
+        self.Ui.lineEdit_sfzh.setText(text)
+    def load_sfzh_data(self):
+        self.load_sfzh_province()
+        for i in range(100):
+            self.Ui.comboBox_sfzh_year_2.addItem(str(i).rjust(2,'0'))
+        for i in range(1,32):
+            self.Ui.comboBox_sfzh_day.addItem(str(i).rjust(2,'0'))
 
+    def load_phone_data(self):
+        self.load_phone_province()
+        self.load_phone_isp()
+    def load_phone_isp(self):
+        sql_poc = "SELECT distinct isp from phone where isp !=''"
+        _data = self.sql_search(sql_poc)
+        for i in _data:
+            self.Ui.comboBox_phone_operator.addItems(i)
+        self.Ui.comboBox_phone_operator.activated[str].connect(self.load_phone_haoduan)
+
+
+    def load_phone_province(self):
+        sql_poc = "SELECT distinct province from phone"
+        _data = self.sql_search(sql_poc)
+        for i in _data:
+            self.Ui.comboBox_phone_province.addItems(i)
+        self.Ui.comboBox_phone_province.activated[str].connect(self.load_phone_city)
+    def load_sfzh_province(self):
+        sql_poc = "SELECT distinct region_name from sfzh where parent_id ='100000'"
+        _data = self.sql_search(sql_poc)
+        for i in _data:
+            self.Ui.comboBox_sfzh_province.addItems(i)
+        self.Ui.comboBox_sfzh_province.activated[str].connect(self.load_sfzh_city)
+        # print(_data)
+    def load_phone_city(self):
+        self.load_phone_haoduan()
+        province = self.Ui.comboBox_phone_province.currentText()
+        if province != "随机":
+            sql_poc = "SELECT distinct city from phone where province ='"+province+"'"
+            _data = self.sql_search(sql_poc)
+            self.Ui.comboBox_phone_city.clear()
+            self.Ui.comboBox_phone_city.addItem("随机")
+            for i in _data:
+                self.Ui.comboBox_phone_city.addItems(i)
+            self.Ui.comboBox_phone_city.activated[str].connect(self.load_phone_haoduan)
+        else:
+            self.Ui.comboBox_phone_city.clear()
+            self.Ui.comboBox_phone_city.addItem("随机")
+    def load_sfzh_city(self):
+        text = self.Ui.lineEdit_sfzh.text()
+        province = self.Ui.comboBox_sfzh_province.currentText()
+        if province != "随机":
+            sql_poc = "SELECT distinct * from sfzh where region_name ='"+province+"'"
+            _data = self.sql_search(sql_poc,'dict')
+            text =  str(_data[0].get('region_id')) + text[6:]
+            self.Ui.lineEdit_sfzh.setText(text)
+            sql_poc = "SELECT distinct region_name from sfzh where parent_id ='"+_data[0].get('region_id')+"'"
+            _data = self.sql_search(sql_poc)
+            self.Ui.comboBox_sfzh_city.clear()
+            self.Ui.comboBox_sfzh_city.addItem("随机")
+            for i in _data:
+                if i:
+                    self.Ui.comboBox_sfzh_city.addItems(i)
+            self.Ui.comboBox_sfzh_city.activated[str].connect(self.load_sfzh_area)
+        else:
+            self.Ui.comboBox_sfzh_city.clear()
+            self.Ui.comboBox_sfzh_city.addItem("随机")
+
+    def load_phone_haoduan(self):
+        self.Ui.comboBox_phone_number.clear()
+        province = self.Ui.comboBox_phone_province.currentText()
+        city = self.Ui.comboBox_phone_city.currentText()
+        isp = self.Ui.comboBox_phone_operator.currentText()
+        if isp=="随机":
+            if province !="随机" and city !="随机":
+                sql_poc = "SELECT distinct phone,province,city from phone where province ='" + province + "' and city='"+city+"'"
+            elif province !="随机" and city =="随机":
+                sql_poc = "SELECT distinct phone,province,city from phone where province ='" + province + "' and city!=''"
+            else:
+                sql_poc = "SELECT distinct phone,province,city from phone where province !='' and city !=''"
+        else:
+            if province !="随机" and city !="随机":
+                sql_poc = "SELECT distinct phone,province,city from phone where province ='" + province + "' and city='"+city+"' and isp='"+isp+"'"
+            elif province !="随机" and city =="随机":
+                sql_poc = "SELECT distinct phone,province,city from phone where province ='" + province + "' and city!='' and isp='"+isp+"'"
+            else:
+                sql_poc = "SELECT distinct phone,province,city from phone where province !='' and city !='' and isp='"+isp+"'"
+        _data = self.sql_search(sql_poc)
+        for i in _data:
+            self.Ui.comboBox_phone_number.addItem(i[0])
+
+    def load_sfzh_area(self):
+        text = self.Ui.lineEdit_sfzh.text()
+        city = self.Ui.comboBox_sfzh_city.currentText()
+        if city != "随机":
+            sql_poc = "SELECT distinct * from sfzh where region_name ='"+city+"'"
+            _data = self.sql_search(sql_poc,'dict')
+            text =  str(_data[0].get('region_id')) + text[6:]
+            self.Ui.lineEdit_sfzh.setText(text)
+            sql_poc = "SELECT distinct region_name from sfzh where parent_id ='"+_data[0].get('region_id')+"'"
+            _data = self.sql_search(sql_poc)
+            self.Ui.comboBox_sfzh_area.clear()
+            self.Ui.comboBox_sfzh_area.addItem("随机")
+            for i in _data:
+                self.Ui.comboBox_sfzh_area.addItems(i)
+            self.Ui.comboBox_sfzh_area.activated[str].connect(self.load_sfzh_num)
+        else:
+            self.Ui.comboBox_sfzh_area.clear()
+            self.Ui.comboBox_sfzh_area.addItem("随机")
+    def load_sfzh_num(self):
+        text = self.Ui.lineEdit_sfzh.text()
+        area = self.Ui.comboBox_sfzh_area.currentText()
+        if area != "随机":
+            sql_poc = "SELECT distinct * from sfzh where region_name ='" + area + "'"
+            _data = self.sql_search(sql_poc, 'dict')
+            text = str(_data[0].get('region_id')) + text[6:]
+            self.Ui.lineEdit_sfzh.setText(text)
     def java_encode(self):
         _text =self.Ui.textEdit_java_result.toPlainText().encode()
         box = QtWidgets.QMessageBox()
@@ -658,7 +807,119 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
     def file_save(self, filename):
         fileName, filetype = QFileDialog.getSaveFileName(self, (r"保存文件"), (filename), r"All files(*.*)")
         return fileName
+    def sfzh_go(self):
+        self.Ui.textEdit_sfzh_result.clear()
+        sfzh_line = self.Ui.lineEdit_sfzh.text()
+        province = self.Ui.comboBox_sfzh_province.currentText()
+        city = self.Ui.comboBox_sfzh_city.currentText()
+        area = self.Ui.comboBox_sfzh_area.currentText()
+        sex = self.Ui.comboBox_sfzh_sex.currentText()
+        sexstring = ""
+        if sex =='随机':
+            sexstring = "1234567890"
+        elif sex =='男':
+            sexstring="13579"
+        else:
+            sexstring = "24680"
+        year = self.Ui.comboBox_sfzh_year.currentText()
+        year_2 = self.Ui.comboBox_sfzh_year_2.currentText()
+        year_list= []
+        if year == "随机" and year_2 !="随机":
+            for i in [19,20]:
+                year_list.append(i+year_2)
+        elif year != "随机" and year_2 == "随机":
+            for i in range(1,32):
+                year_list.append(year+str(i).rjust(2,'0'))
+        elif year != "随机" and year_2 != "随机":
+            year_list.append(year+year_2)
+        else:
+            for i in [19,20]:
+                for j in range(1,32):
+                    year_list.append(str(i) + str(j).rjust(2, '0'))
 
+        month = self.Ui.comboBox_sfzh_month.currentText()
+        day = self.Ui.comboBox_sfzh_day.currentText()
+        month_day_list= []
+        if month == "随机" and day !="随机":
+            for i in range(1,13):
+                month_day_list.append(str(i).rjust(2,'0')+day)
+        elif month != "随机" and day == "随机":
+            for i in range(1,32):
+                month_day_list.append(month+str(i).rjust(2,'0'))
+        elif month != "随机" and day != "随机":
+            month_day_list.append(month+day)
+        else:
+            for i in range(1,13):
+                for j in range(1,32):
+                    month_day_list.append( str(i).rjust(2, '0') + str(j).rjust(2, '0'))
+        is_sfzh = self.Ui.checkBox_sfzh.isChecked()
+        count = self.Ui.spinBox_sfzh_num.value()
+        if province != "随机" and city != "随机" and area != "随机":
+            sql_poc = "SELECT distinct region_id,merger_name from sfzh where merger_name like '%"+province+","+city+","+area+"%'"
+            # province_city_area_list.append((sfzh_line[:6],province+","+city+""))
+        elif province != "随机" and city != "随机" and area == "随机":
+            sql_poc = "SELECT distinct region_id,merger_name from sfzh where merger_name like '%"+province+","+city+"%'"
+        elif province != "随机" and city == "随机":
+            sql_poc = "SELECT distinct region_id,merger_name from sfzh where merger_name like '%"+province+"%'"
+        else:
+            sql_poc = "SELECT distinct region_id,merger_name from sfzh"
+        province_city_area_list = self.sql_search(sql_poc)
+
+
+
+        self.obj = SFZH(province_city_area_list,sexstring,year_list,month_day_list,is_sfzh,count)  # 创建一个线程
+        self.obj._data.connect(self.update_sfzh)  # 线程发过来的信号挂接到槽函数update_sum
+        self.Ui.pushButton_sfzh_go.setEnabled(False)
+        self.obj.start()  # 线程启动
+    def pushButton_phone_chaxun(self):
+        text = self.Ui.lineEdit_phone.text()
+        box = QtWidgets.QMessageBox()
+        if len(text)<7:
+            box.warning(self, "查询结果", "请输入大于7位号码！")
+            return 
+        sql_poc = "SELECT distinct province,city,isp from phone where phone = '"+text[:7]+"'"
+        result = self.sql_search(sql_poc)
+        if result:
+            box.information(self, "查询结果", text+"\n"+result[0][0]+" "+result[0][1]+" "+result[0][2])
+        else:
+            box.warning(self, "查询结果", "未查询到结果！")
+    def phone_go(self):
+        self.Ui.textEdit_phone_result.clear()
+        province = self.Ui.comboBox_phone_province.currentText()
+        city = self.Ui.comboBox_phone_city.currentText()
+        haoduan = self.Ui.comboBox_phone_number.currentText()
+        isp = self.Ui.comboBox_phone_operator.currentText()
+        count = self.Ui.spinBox_phone_num.value()
+        start_num = self.Ui.spinBox_phone_start_num.value()
+        end_num = self.Ui.spinBox_phone_end_num.value()
+        is_phone = self.Ui.checkBox_phone_num.isChecked()
+        if haoduan == "随机":
+            if province !="随机" and city !="随机" and isp !="随机":
+                sql_poc = "SELECT distinct phone,province,city,isp from phone where province = '"+province+"' and city='"+city+"' and isp='"+isp+"'"
+            elif province !="随机" and city !="随机" and isp =="随机":
+                sql_poc = "SELECT distinct phone,province,city,isp from phone where province = '"+province+"' and city='"+city+"'"
+            elif province != "随机" and city == "随机" and isp == "随机":
+                sql_poc = "SELECT distinct phone,province,city,isp from phone where province = '"+province+"' and city!=''"
+            else:
+                sql_poc = "SELECT distinct phone,province,city,isp from phone where  city!=''"
+
+        else:
+            sql_poc = "SELECT distinct phone,province,city,isp from phone where  phone='"+haoduan+"'"
+        all_haoduan = self.sql_search(sql_poc)
+        self.obj = Phone(all_haoduan,count,start_num,end_num,is_phone)  # 创建一个线程
+        self.obj._data.connect(self.update_phone)  # 线程发过来的信号挂接到槽函数update_sum
+        self.Ui.pushButton_phone_go.setEnabled(False)
+        self.obj.start()  # 线程启动
+    def update_phone(self,text):
+        if text=="end":
+            self.Ui.pushButton_phone_go.setEnabled(True)
+        else:
+            self.Ui.textEdit_phone_result.append(text)
+    def update_sfzh(self,text):
+        if text=="end":
+            self.Ui.pushButton_sfzh_go.setEnabled(True)
+        else:
+            self.Ui.textEdit_sfzh_result.append(text)
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")

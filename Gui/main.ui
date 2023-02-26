@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>GUI Tools</string>
+   <string>R-Knife</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
@@ -136,6 +136,40 @@
         <string>编码解码</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_6">
+        <item row="1" column="0">
+         <widget class="QTabWidget" name="tabWidget_4">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="documentMode">
+           <bool>false</bool>
+          </property>
+          <property name="tabsClosable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="tab_10">
+           <attribute name="title">
+            <string>996</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_11">
+            <item row="1" column="0">
+             <widget class="QPlainTextEdit" name="Result_text">
+              <property name="placeholderText">
+               <string>结果会显示在此处</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QPlainTextEdit" name="Source_text">
+              <property name="placeholderText">
+               <string>请在此处输入</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_8">
           <item>
@@ -372,154 +406,6 @@
           </item>
          </layout>
         </item>
-        <item row="1" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_9">
-          <item>
-           <widget class="QPushButton" name="zhuanyuan">
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>转源文本</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="Result_Copy_Button">
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>复制结果</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="tab_add">
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>增加tab</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="Source_clear_Button">
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>清空文本</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="Source_Paste_Button">
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>粘贴密文</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item row="2" column="0">
-         <widget class="QTabWidget" name="tabWidget_4">
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <property name="documentMode">
-           <bool>false</bool>
-          </property>
-          <property name="tabsClosable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="tab_10">
-           <attribute name="title">
-            <string>996</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_11">
-            <item row="1" column="0">
-             <widget class="QPlainTextEdit" name="Result_text">
-              <property name="placeholderText">
-               <string>结果会显示在此处</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QPlainTextEdit" name="Source_text">
-              <property name="placeholderText">
-               <string>请在此处输入</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_4">
@@ -630,7 +516,7 @@
            <bool>true</bool>
           </attribute>
           <attribute name="horizontalHeaderCascadingSectionResizes">
-           <bool>false</bool>
+           <bool>true</bool>
           </attribute>
           <attribute name="horizontalHeaderMinimumSectionSize">
            <number>25</number>
@@ -936,6 +822,553 @@
            <widget class="QTextEdit" name="textEdit_java_result"/>
           </item>
          </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_7">
+       <attribute name="title">
+        <string>账号生成</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_12">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget_3">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="tab_9">
+           <attribute name="title">
+            <string>SFZH生成</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_13">
+            <item row="0" column="0" colspan="3">
+             <layout class="QHBoxLayout" name="horizontalLayout_9">
+              <item>
+               <widget class="QComboBox" name="comboBox_sfzh_province">
+                <item>
+                 <property name="text">
+                  <string>随机</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_7">
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="text">
+                 <string>省</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_sfzh_city">
+                <item>
+                 <property name="text">
+                  <string>随机</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_9">
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>市</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_sfzh_area">
+                <item>
+                 <property name="text">
+                  <string>随机</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_10">
+                <property name="maximumSize">
+                 <size>
+                  <width>70</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>县（区）</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="3" colspan="2">
+             <layout class="QHBoxLayout" name="horizontalLayout_12">
+              <item>
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>性别</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_sfzh_sex">
+                <item>
+                 <property name="text">
+                  <string>随机</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>男</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>女</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_8">
+                <property name="text">
+                 <string>条数</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBox_sfzh_num">
+                <property name="inputMethodHints">
+                 <set>Qt::ImhDigitsOnly</set>
+                </property>
+                <property name="minimum">
+                 <number>0</number>
+                </property>
+                <property name="maximum">
+                 <number>65535</number>
+                </property>
+                <property name="value">
+                 <number>500</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_sfzh">
+                <property name="text">
+                 <string>只打印身份证号</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string>身份证号</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="lineEdit_sfzh">
+              <property name="text">
+               <string>******************</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2" colspan="2">
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <item>
+               <widget class="QLabel" name="label_15">
+                <property name="text">
+                 <string>生日</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_sfzh_year">
+                <item>
+                 <property name="text">
+                  <string>随机</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>19</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>20</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_sfzh_year_2">
+                <item>
+                 <property name="text">
+                  <string>随机</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_16">
+                <property name="text">
+                 <string>年</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_sfzh_month">
+                <item>
+                 <property name="text">
+                  <string>随机</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>01</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>02</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>03</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>04</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>05</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>06</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>07</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>08</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>09</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>10</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>11</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>12</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_17">
+                <property name="text">
+                 <string>月</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_sfzh_day">
+                <item>
+                 <property name="text">
+                  <string>随机</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_18">
+                <property name="text">
+                 <string>日</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="4">
+             <widget class="QPushButton" name="pushButton_sfzh_go">
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>生成</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0" colspan="5">
+             <widget class="QTextEdit" name="textEdit_sfzh_result"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_11">
+           <attribute name="title">
+            <string>手机号生成</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_15">
+            <item row="0" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_14">
+              <item>
+               <widget class="QComboBox" name="comboBox_phone_province">
+                <item>
+                 <property name="text">
+                  <string>随机</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_19">
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>省</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_phone_city">
+                <item>
+                 <property name="text">
+                  <string>随机</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_20">
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>市</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="label_21">
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>运营商</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QComboBox" name="comboBox_phone_operator">
+              <item>
+               <property name="text">
+                <string>随机</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QLabel" name="label_22">
+              <property name="maximumSize">
+               <size>
+                <width>40</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>号段</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QComboBox" name="comboBox_phone_number">
+              <item>
+               <property name="text">
+                <string>随机</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="0" column="5">
+             <widget class="QLabel" name="label_23">
+              <property name="maximumSize">
+               <size>
+                <width>40</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>条数</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="6">
+             <widget class="QSpinBox" name="spinBox_phone_num">
+              <property name="inputMethodHints">
+               <set>Qt::ImhDigitsOnly</set>
+              </property>
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>65535</number>
+              </property>
+              <property name="value">
+               <number>500</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="7">
+             <widget class="QCheckBox" name="checkBox_phone_num">
+              <property name="text">
+               <string>只打印手机号</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="8" rowspan="2">
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <item>
+               <widget class="QPushButton" name="pushButton_phone_go">
+                <property name="text">
+                 <string>生成</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_phone_number">
+                <property name="text">
+                 <string>查询</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="0" colspan="8">
+             <layout class="QHBoxLayout" name="horizontalLayout_20">
+              <item>
+               <widget class="QLabel" name="label_26">
+                <property name="text">
+                 <string>开始数字</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBox_phone_start_num">
+                <property name="inputMethodHints">
+                 <set>Qt::ImhDigitsOnly</set>
+                </property>
+                <property name="minimum">
+                 <number>0</number>
+                </property>
+                <property name="maximum">
+                 <number>9999</number>
+                </property>
+                <property name="singleStep">
+                 <number>1</number>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_27">
+                <property name="text">
+                 <string>结束数字</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBox_phone_end_num">
+                <property name="inputMethodHints">
+                 <set>Qt::ImhDigitsOnly</set>
+                </property>
+                <property name="minimum">
+                 <number>0</number>
+                </property>
+                <property name="maximum">
+                 <number>9999</number>
+                </property>
+                <property name="singleStep">
+                 <number>1</number>
+                </property>
+                <property name="value">
+                 <number>9999</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_28">
+                <property name="text">
+                 <string>手机号码归属地查询</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lineEdit_phone"/>
+              </item>
+             </layout>
+            </item>
+            <item row="2" column="0" colspan="9">
+             <widget class="QTextEdit" name="textEdit_phone_result"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
         </item>
        </layout>
       </widget>
