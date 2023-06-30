@@ -1,5 +1,8 @@
 # coding=utf-8
+<<<<<<< HEAD
 # coding=utf-8
+=======
+>>>>>>> origin/main
 import re
 
 import base36

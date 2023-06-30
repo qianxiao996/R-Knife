@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #/usr/bin/python -m nuitka
+=======
+#!/usr/bin/python
+>>>>>>> origin/main
 # -*- coding: UTF-8 -*-
 import configparser
 import json,base64
@@ -6,6 +10,7 @@ import os,re
 import subprocess
 import sys,csv
 import random,time
+<<<<<<< HEAD
 from PySide6 import QtWidgets, QtCore, QtGui
 
 from PySide6.QtGui import QCursor
@@ -23,6 +28,24 @@ if hasattr(sys, 'frozen'):
     os.environ['PATH'] = sys._MEIPASS + ";" + os.environ['PATH']
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
+=======
+from PyQt5.QtGui import QMouseEvent
+from  PyQt5.Qt import QCursor
+from urllib.parse import urlparse
+import pyperclip
+import qdarkstyle
+from qdarkstyle import LightPalette
+from qt_material import apply_stylesheet
+
+from PyQt5.QtGui import QPixmap,QMovie
+from module.Tools_Start import Tools_Start
+
+if hasattr(sys, 'frozen'):
+    os.environ['PATH'] = sys._MEIPASS + ";" + os.environ['PATH']
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+>>>>>>> origin/main
 import requests,sqlite3
 from Gui.main import Ui_MainWindow
 import frozen_dir
@@ -31,15 +54,24 @@ from module.func_decode import Class_Decode
 from module.func_encode import Class_Encode
 from module.sfzh import SFZH
 from module.phone import Phone
+<<<<<<< HEAD
 from qt_material import apply_stylesheet
+=======
+>>>>>>> origin/main
 
 
 
 SETUP_DIR = frozen_dir.app_path()
 sys.path.append(SETUP_DIR)
+<<<<<<< HEAD
 version = '1.2'
 config_file_dir = './Conf/config.ini'
 update_time = '20230630'
+=======
+version = '1.1'
+config_file_dir = './Conf/config.ini'
+update_time = '20230226'
+>>>>>>> origin/main
 DB_NAME = './Conf/DB.db'
 requests.packages.urllib3.disable_warnings()
 
@@ -56,8 +88,12 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
         self.generate_shell()
         self.generate_file_shell()
         # self.Ui.tab_add.clicked.connect(self.add_Tab)  # 添加tab
+<<<<<<< HEAD
         # desktop = QApplication.desktop()
         desktop = QApplication.instance().screens()[0].size()
+=======
+        desktop = QApplication.desktop()
+>>>>>>> origin/main
         # print(desktop.width(),desktop.height())
         self.x=desktop.width()-200
         # self.y=desktop.height()-(desktop.height()-100)
@@ -72,16 +108,27 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
         # self.Ui.Source_clear_Button.clicked.connect(lambda: self.Ui.Source_text.clear())  # clear_source
         # self.Ui.Result_Copy_Button.clicked.connect(lambda: self.Copy_text( self.Ui.Result_text.toPlainText()))  # copy_result
         # self.Ui.zhuanyuan.clicked.connect(self.zhuan_yuanwenben)  # paste_result
+<<<<<<< HEAD
         # self.Ui.comboBox_encode.textActivated[str].connect(self.onActivated)
         self.Ui.comboBox_encode.textActivated[str].connect(lambda:self.gogogo(self.Ui.comboBox_encode.currentText()))
         self.Ui.comboBox_decode.textActivated[str].connect(lambda:self.gogogo(self.Ui.comboBox_decode.currentText(),"Decode"))
         self.Ui.comboBox_jinzhi.textActivated[str].connect(lambda:self.Binary_gogogo(self.Ui.comboBox_jinzhi.currentText()))
+=======
+
+        self.Ui.comboBox_encode.activated[str].connect(lambda:self.gogogo(self.Ui.comboBox_encode.currentText()))
+        self.Ui.comboBox_decode.activated[str].connect(lambda:self.gogogo(self.Ui.comboBox_decode.currentText(),"Decode"))
+        self.Ui.comboBox_jinzhi.activated[str].connect(lambda:self.Binary_gogogo(self.Ui.comboBox_jinzhi.currentText()))
+>>>>>>> origin/main
 
         #默认设备密码
         self.load_morepasswd()
         # self.Ui.tableWidget_morenpasswd_result.setVisible(False)
         self.Ui.tableWidget_morenpasswd_result.horizontalHeader().setVisible(True)
+<<<<<<< HEAD
         self.Ui.tableWidget_morenpasswd_result.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
+=======
+        self.Ui.tableWidget_morenpasswd_result.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+>>>>>>> origin/main
         # self.Ui.tableWidget_morenpasswd_result.resizeColumnToContents(0)
         # self.Ui.tableWidget_morenpasswd_result.resizeColumnToContents(1)
         # self.Ui.tableWidget_morenpasswd_result.resizeColumnToContents(2)
@@ -115,10 +162,17 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
         self.load_sfzh_data()
         self.load_phone_data()
 
+<<<<<<< HEAD
         self.Ui.comboBox_sfzh_year.textActivated[str].connect(self.load_sfzh_year)
         self.Ui.comboBox_sfzh_year_2.textActivated[str].connect(self.load_sfzh_year_2)
         self.Ui.comboBox_sfzh_month.textActivated[str].connect(self.load_sfzh_month)
         self.Ui.comboBox_sfzh_day.textActivated[str].connect(self.load_sfzh_day)
+=======
+        self.Ui.comboBox_sfzh_year.activated[str].connect(self.load_sfzh_year)
+        self.Ui.comboBox_sfzh_year_2.activated[str].connect(self.load_sfzh_year_2)
+        self.Ui.comboBox_sfzh_month.activated[str].connect(self.load_sfzh_month)
+        self.Ui.comboBox_sfzh_day.activated[str].connect(self.load_sfzh_day)
+>>>>>>> origin/main
         self.Ui.pushButton_sfzh_go.clicked.connect(self.sfzh_go)
         self.Ui.pushButton_phone_go.clicked.connect(self.phone_go)
         self.Ui.pushButton_phone_number.clicked.connect(self.pushButton_phone_chaxun)
@@ -171,7 +225,11 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
         _data = self.sql_search(sql_poc)
         for i in _data:
             self.Ui.comboBox_phone_operator.addItems(i)
+<<<<<<< HEAD
         self.Ui.comboBox_phone_operator.textActivated[str].connect(self.load_phone_haoduan)
+=======
+        self.Ui.comboBox_phone_operator.activated[str].connect(self.load_phone_haoduan)
+>>>>>>> origin/main
 
 
     def load_phone_province(self):
@@ -179,13 +237,21 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
         _data = self.sql_search(sql_poc)
         for i in _data:
             self.Ui.comboBox_phone_province.addItems(i)
+<<<<<<< HEAD
         self.Ui.comboBox_phone_province.textActivated[str].connect(self.load_phone_city)
+=======
+        self.Ui.comboBox_phone_province.activated[str].connect(self.load_phone_city)
+>>>>>>> origin/main
     def load_sfzh_province(self):
         sql_poc = "SELECT distinct region_name from sfzh where parent_id ='100000'"
         _data = self.sql_search(sql_poc)
         for i in _data:
             self.Ui.comboBox_sfzh_province.addItems(i)
+<<<<<<< HEAD
         self.Ui.comboBox_sfzh_province.textActivated[str].connect(self.load_sfzh_city)
+=======
+        self.Ui.comboBox_sfzh_province.activated[str].connect(self.load_sfzh_city)
+>>>>>>> origin/main
         # print(_data)
     def load_phone_city(self):
         self.load_phone_haoduan()
@@ -197,7 +263,11 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
             self.Ui.comboBox_phone_city.addItem("随机")
             for i in _data:
                 self.Ui.comboBox_phone_city.addItems(i)
+<<<<<<< HEAD
             self.Ui.comboBox_phone_city.textActivated[str].connect(self.load_phone_haoduan)
+=======
+            self.Ui.comboBox_phone_city.activated[str].connect(self.load_phone_haoduan)
+>>>>>>> origin/main
         else:
             self.Ui.comboBox_phone_city.clear()
             self.Ui.comboBox_phone_city.addItem("随机")
@@ -216,7 +286,11 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
             for i in _data:
                 if i:
                     self.Ui.comboBox_sfzh_city.addItems(i)
+<<<<<<< HEAD
             self.Ui.comboBox_sfzh_city.textActivated[str].connect(self.load_sfzh_area)
+=======
+            self.Ui.comboBox_sfzh_city.activated[str].connect(self.load_sfzh_area)
+>>>>>>> origin/main
         else:
             self.Ui.comboBox_sfzh_city.clear()
             self.Ui.comboBox_sfzh_city.addItem("随机")
@@ -258,7 +332,11 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
             self.Ui.comboBox_sfzh_area.addItem("随机")
             for i in _data:
                 self.Ui.comboBox_sfzh_area.addItems(i)
+<<<<<<< HEAD
             self.Ui.comboBox_sfzh_area.textActivated[str].connect(self.load_sfzh_num)
+=======
+            self.Ui.comboBox_sfzh_area.activated[str].connect(self.load_sfzh_num)
+>>>>>>> origin/main
         else:
             self.Ui.comboBox_sfzh_area.clear()
             self.Ui.comboBox_sfzh_area.addItem("随机")
@@ -491,7 +569,11 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
             # self.vuln_widget.pushButton.clicked.connect(lambda:self.open_close_(0))
         else:
             self.show()
+<<<<<<< HEAD
             isMaximized = self.windowState() & QtCore.Qt.WindowState.WindowMaximized
+=======
+            isMaximized = self.windowState() & QtCore.Qt.WindowMaximized
+>>>>>>> origin/main
             if isMaximized:
                 self.showMaximized()
             else:
@@ -530,6 +612,7 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
         config_setup = configparser.ConfigParser()
         # -read读取ini文件
         config_setup.read(config_file_dir, encoding='utf-8')
+<<<<<<< HEAD
         # app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='PyQt5', palette=LightPalette()))
         # app.setStyleSheet(qdarkstyle.load_stylesheet_PyQt5())
         try:
@@ -544,6 +627,10 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
         except Exception as e:
             print(str(e))
 
+=======
+        app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyqt5', palette=LightPalette()))
+        # app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+>>>>>>> origin/main
 
     def load_button(self):
         f=open("conf/data.json",encoding="utf-8")
@@ -571,7 +658,11 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
                 gridLayout.addWidget(pushButton, line_num, col_num, 1, 1)
                 col_num+=1
             gridLayout_3.addLayout(gridLayout, 0, 0, 1, 1)
+<<<<<<< HEAD
             spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+=======
+            spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+>>>>>>> origin/main
             gridLayout_3.addItem(spacerItem, 1, 0, 1, 1)
             self.Ui.tabWidget.addTab(tab, tab_name)
 
@@ -706,20 +797,34 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
         reply = QtWidgets.QMessageBox.question(self,
                                                '本程序',
                                                "是否要退出程序？",
+<<<<<<< HEAD
                                                QMessageBox.StandardButton.Yes| QMessageBox.StandardButton.No,
                                                QtWidgets.QMessageBox.StandardButton.No)
         if reply == QtWidgets.QMessageBox.StandardButton.Yes:
+=======
+                                               QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+                                               QtWidgets.QMessageBox.No)
+        if reply == QtWidgets.QMessageBox.Yes:
+>>>>>>> origin/main
             config_setup.write(open(config_file_dir, "r+", encoding="utf-8"))  # r+模式
             event.accept()
         else:
             event.ignore()
 
     def changeEvent(self, event):
+<<<<<<< HEAD
         if event.type() == QtCore.QEvent.Type.WindowStateChange:
             if self.windowState() & QtCore.Qt.WindowState.WindowMinimized:
                 self.open_close_(1)
                 # print('changeEvent: Minimised')
             elif event.oldState() & QtCore.Qt.WindowState.WindowMinimized:
+=======
+        if event.type() == QtCore.QEvent.WindowStateChange:
+            if self.windowState() & QtCore.Qt.WindowMinimized:
+                self.open_close_(1)
+                # print('changeEvent: Minimised')
+            elif event.oldState() & QtCore.Qt.WindowMinimized:
+>>>>>>> origin/main
                 # self.open_close_(0)
                 pass
                 # print('changeEvent: Normal/Maximised/FullScreen')
@@ -728,11 +833,19 @@ class MainWindows(QtWidgets.QMainWindow):  # 主窗口
     def eventFilter(self, object, event):
         if object == self.Ui.tabWidget_4.tabBar():
             # if  event.type() in [QEvent.MouseButtonPress,  QEvent.MouseButtonRelease] :
+<<<<<<< HEAD
             if event.type() in [QtCore.QEvent.Type.MouseButtonPress]:
                 mouseEvent = QMouseEvent(event)
                 if mouseEvent.buttons() == QtCore.Qt.MouseButton.RightButton:
                     self.add_Tab()
             elif event.type() == QtCore.QEvent.Type.MouseButtonDblClick:
+=======
+            if event.type() in [QEvent.MouseButtonPress]:
+                mouseEvent = QMouseEvent(event)
+                if mouseEvent.buttons() == QtCore.Qt.RightButton:
+                    self.add_Tab()
+            elif event.type() == QtCore.QEvent.MouseButtonDblClick:
+>>>>>>> origin/main
                 # If image is double clicked, remove bar.
                 self.add_Tab()
         return False
@@ -962,6 +1075,7 @@ class Ui_Dialog(object):
         movie =  QMovie('conf/logo.gif')
         self.label.setMovie(movie)  # 在label上显示图片
         self.label.setScaledContents(True)  # 在label上显示图片
+<<<<<<< HEAD
         movie.start()
         Dialog.setWindowTitle("Form")
         Dialog.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint|QtCore.Qt.WindowType.WindowStaysOnTopHint|QtCore.Qt.WindowType.SplashScreen)
@@ -971,14 +1085,31 @@ class Ui_Dialog(object):
 class MyLabel(QLabel):
     clicked_move = Signal(list)
     clicked = Signal(str)
+=======
+        movie.start();
+        Dialog.setWindowTitle("Form")
+        Dialog.setWindowFlags(Qt.FramelessWindowHint|Qt.WindowStaysOnTopHint|QtCore.Qt.SplashScreen)
+        Dialog.setAttribute(Qt.WA_TranslucentBackground)  # 窗口透明
+
+
+class MyLabel(QLabel):
+    clicked_move = pyqtSignal(list)
+    clicked = pyqtSignal(str)
+>>>>>>> origin/main
     def __init__(self,parent=None):
         super(MyLabel, self).__init__(parent)
         self.txt = ''
     # 鼠标键按下时调用;
     def mousePressEvent(self, event):
+<<<<<<< HEAD
         if event.button() == QtCore.Qt.MouseButton.LeftButton:
             self.clicked.emit(self.txt)
         elif  event.buttons() == QtCore.Qt.MouseButton.RightButton:
+=======
+        if event.button() == QtCore.Qt.LeftButton:
+            self.clicked.emit(self.txt)
+        elif  event.buttons() == QtCore.Qt.RightButton:
+>>>>>>> origin/main
             pass
     #松开调用
     # def mousePressEvent(self, event):
@@ -996,13 +1127,17 @@ class MyLabel(QLabel):
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     window = MainWindows()
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     translator = QTranslator()
     translator.load('./conf/qm/qt_zh_CN.qm') #改变中文菜单
     app.installTranslator(translator)
     translator_2 = QTranslator()
     translator_2.load('./conf/qm/widgets_zh_cn.qm') #改变QTextEdit右键为中文
     app.installTranslator(translator_2)
+<<<<<<< HEAD
     # setup stylesheet
     # ['dark_amber.xml',
     #  'dark_blue.xml',
@@ -1032,3 +1167,7 @@ if __name__ == "__main__":
 
     window.show()
     sys.exit(app.exec())
+=======
+    window.show()
+    sys.exit(app.exec_())
+>>>>>>> origin/main

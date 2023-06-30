@@ -1,12 +1,20 @@
 import re
 import socket,pypinyin
 import struct
+<<<<<<< HEAD
 from PySide6.QtCore import QThread, Signal
+=======
+from PyQt5.QtCore import QThread, pyqtSignal
+>>>>>>> origin/main
 
 
 class Tools_Start(QThread):
     """该线程用于计算耗时的累加操作"""
+<<<<<<< HEAD
     _data = Signal(str)  # 信号类型 str
+=======
+    _data = pyqtSignal(str)  # 信号类型 str
+>>>>>>> origin/main
     def __init__(self,tools_source,tools_type,parent=None):
         super(Tools_Start,self).__init__(parent)
         self.tools_source = tools_source

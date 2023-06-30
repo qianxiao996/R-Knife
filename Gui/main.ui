@@ -30,7 +30,11 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget_2">
       <property name="currentIndex">
+<<<<<<< HEAD
        <number>1</number>
+=======
+       <number>0</number>
+>>>>>>> origin/main
       </property>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -176,7 +180,11 @@
            <widget class="QCheckBox" name="checkBox_line">
             <property name="maximumSize">
              <size>
+<<<<<<< HEAD
               <width>16777215</width>
+=======
+              <width>100</width>
+>>>>>>> origin/main
               <height>16777215</height>
              </size>
             </property>
@@ -513,7 +521,11 @@
            <bool>true</bool>
           </property>
           <attribute name="horizontalHeaderVisible">
+<<<<<<< HEAD
            <bool>false</bool>
+=======
+           <bool>true</bool>
+>>>>>>> origin/main
           </attribute>
           <attribute name="horizontalHeaderCascadingSectionResizes">
            <bool>true</bool>
