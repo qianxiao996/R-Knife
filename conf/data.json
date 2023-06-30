@@ -1,0 +1,16 @@
+{
+  "信息收集": {
+    "dirsearch": "start cmd /k \"cd {{tools}}/信息收集/dirsearch/ && {{python3}} dirsearch.py -u {{url}}\"",
+    "Super-PortScan": "start cmd /k \"cd {{tools}}/信息收集/Super-PortScan/ && Super-PortScan.exe -i {{ip}}\"",
+    "Layer 5.0": "{{tools}}/信息收集/Layer5.0/Layer.exe",
+    "dirsearch5": "start cmd /k \"{{python3}} {{tools}}/信息收集/dirsearch/dirsearch.py -u {{url}}\""
+  },
+  "漏洞利用": {
+    "sqlmap": "start cmd /k \"cd {{tools}}/漏洞利用/sqlmap/ && {{python3}} sqlmap.py -u {{url}}\""
+  },
+  "命令速用":{
+    "ddd": "{{python3}} ./tools/信息收集/dirsearch.py -u {{url}}"
+  }
+
+}
+
